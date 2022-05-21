@@ -1,4 +1,5 @@
 import 'package:calculator/widgets/circle_button.dart';
+import 'package:calculator/widgets/keypad.dart';
 import 'package:calculator/widgets/number_button.dart';
 import 'package:calculator/widgets/number_keyboard.dart';
 import 'package:calculator/widgets/symbol_button.dart';
@@ -20,31 +21,36 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Row(
-              children: List.generate(
-                4 + 3,
-                (index) => index.isEven
-                    ? const [
-                        StringButton(
-                          characters: 'AC',
-                        ),
-                        StringButton(
-                          characters: '()',
-                        ),
-                        SymbolButton(
-                          symbol: Icons.percent,
-                        ),
-                        StringButton(
-                          characters: '/',
-                        ),
-                      ].elementAt(index ~/ 2)
-                    : const SizedBox(
-                        width: 12,
-                      ),
+            Expanded(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.pink.shade200,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    '3x3=9',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 45,
+                    ),
+                  ),
+                ),
               ),
             ),
-            const NumberKeyboard(),
+            const SizedBox(
+              height: 12,
+            ),
+            const Keypad(),
+            const SizedBox(
+              height: 24,
+            ),
           ],
         ),
       ),
